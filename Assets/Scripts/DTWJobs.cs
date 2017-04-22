@@ -10,7 +10,7 @@ public class DTWJobs : ThreadedJob
 	public int animIndex = 0; // RESULT
 	public int offset = 0; // RESULT
 
-	public bool working = true; // infinite loop controller
+	public bool working = false; // infinite loop controller
 
 	public AnimationPlayer ra; // data source
 

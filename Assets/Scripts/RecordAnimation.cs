@@ -35,10 +35,8 @@ public class RecordAnimation : StateMachineBehaviour {
 				dl [i] = (double)t.transform.rotation.x;
 				dl [i + 1] = (double)t.transform.rotation.y;
 				dl [i + 2] = (double)t.transform.rotation.z;
-				dl [i + 3] = (double)t.transform.rotation.w;
-				i += 4;
-			
-
+				//dl [i + 3] = (double)t.transform.rotation.w;
+				i += 3;
 			}
 			MDVector v = new MDVector (dimensions, dl);
 			ra.animationData[ra.animationData.Count-1].Add (v);

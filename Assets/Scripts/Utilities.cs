@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace UCRSuite
 {
@@ -23,7 +24,16 @@ namespace UCRSuite
 
 		static public MDVector distanceSquared(MDVector x, MDVector y, MDVector result)
         {
+			/*for (int i = 0; i < result.Dimensions; i += 4) {
+				float metric = (float) (2 * (x [i] * y [i] + x[i + 1] * y[i + 1] + x[i + 2] * y[i + 2] + x[i + 3] * y[i + 3])*(x [i] * y [i] + x[i + 1] * y[i + 1] + x[i + 2] * y[i + 2] + x[i + 3] * y[i + 3]) - 1f);
+				result  [i]     = Mathf.Acos ((float)((metric < 0) ? 0 : metric) );
+				result  [i + 1] = result  [i];
+				result  [i + 2] = result  [i];
+				result  [i + 3] = result  [i];
 
+			}
+
+			return new MDVector (result);*/
 			MDVector.subtract(x, y, result);
 
             return MDVector.multiply(result, result, result);

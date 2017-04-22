@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotionGenerationQDTW", "Assembly-CSharp.csproj", "{7732B8D2-41F0-440B-79F4-B440B677DEED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotionGenerationQDTW", "Assembly-CSharp-Editor.csproj", "{71DCD16F-6A5D-3086-21FD-679ACB97E2E1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7732B8D2-41F0-440B-79F4-B440B677DEED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7732B8D2-41F0-440B-79F4-B440B677DEED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7732B8D2-41F0-440B-79F4-B440B677DEED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7732B8D2-41F0-440B-79F4-B440B677DEED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71DCD16F-6A5D-3086-21FD-679ACB97E2E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71DCD16F-6A5D-3086-21FD-679ACB97E2E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71DCD16F-6A5D-3086-21FD-679ACB97E2E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71DCD16F-6A5D-3086-21FD-679ACB97E2E1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal

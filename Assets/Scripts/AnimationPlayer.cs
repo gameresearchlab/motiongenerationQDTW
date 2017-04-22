@@ -6,8 +6,8 @@ using UCRSuite;
 public class AnimationPlayer : MonoBehaviour {
 
 	public GameObject[] bodyParts;
-	public int jointDimensionality = 4;
-	public int queryLength = 10; // how many animation frames we compare
+	public int jointDimensionality = 3;
+	public int queryLength = 20; // how many animation frames we compare
 	public DTWJobs job = null;
 	private int previousTrigger = 0;
 	public bool finishedRecording = false;
@@ -32,6 +32,32 @@ public class AnimationPlayer : MonoBehaviour {
 		max = sourceCharacter.GetComponent<Animator> ().runtimeAnimatorController.animationClips.Length;
 		Debug.Log ("# of animations to record = " + max);
 	}
+	public ComputeShader shader;
+	struct MotionPoint
+	{
+		Quaternion q1;
+		Quaternion q2;
+		Quaternion q3;
+		Quaternion q4;
+		Quaternion q5;
+		public float cost;
+		float offset;
+	} 
+
+	void RunShader()
+	{
+		MotionPoint[] data = new MotionPoint[animationData.Count];
+		//INITIALIZE DATA HERE
+
+		ComputeBuffer buffer = new ComputeBuffer(data.Length, 88);
+		shader = new ComputeShader ();
+		int kernel = shader.FindKernel("CSMain");
+		shader.SetBuffer(kernel, "MotionTemplates", buffer);
+		shader.Dispatch(kernel, data.Length, 1,1);
+		buffer.GetData (data);
+		Debug.Log ("data.cost=" + data [0].cost);
+	}
+
 
 	void Update() {
 		// if all animations were recorded, create dtw for each.
@@ -40,6 +66,7 @@ public class AnimationPlayer : MonoBehaviour {
 				job = new DTWJobs ();
 				job.ra = this;
 				job.Start ();
+				RunShader ();
 			}
 
 			// read current input (here it is simulated by reading the current animation)
@@ -56,8 +83,8 @@ public class AnimationPlayer : MonoBehaviour {
 				dl [i] = (double)t.transform.rotation.x;
 				dl [i + 1] = (double)t.transform.rotation.y;
 				dl [i + 2] = (double)t.transform.rotation.z;
-				dl [i + 3] = (double)t.transform.rotation.w;
-				i += 4;
+				//dl [i + 3] = (double)t.transform.rotation.w;
+				i += 3;
 			}
 
 			// prepare data for the query
@@ -71,11 +98,11 @@ public class AnimationPlayer : MonoBehaviour {
 			//trigger appropriate animation
 			int currentTrigger = job.animIndex; // this is set by a DTWJobs (a separate thread, not safe)
 			if (previousTrigger != currentTrigger) {
-				animator.SetTrigger ("t" + currentTrigger.ToString());
+				//animator.SetTrigger ("t" + currentTrigger.ToString());
 				previousTrigger = currentTrigger;
 				Debug.Log ("Triggering animation #" + currentTrigger.ToString ());
 
-				//animator.CrossFade(job.animIndex.ToString(), 0.01f, 0, 0f);
+				animator.Play (job.animIndex.ToString ());//.CrossFade(job.animIndex.ToString(), 0.01f, 0, 0f);
 
 			}
 
